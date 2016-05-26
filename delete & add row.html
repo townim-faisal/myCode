@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
+<!-- delete & add row -->
+<script>
+function($) {
+  	$(document).ready(function() {
+	  
+	  $("#dynamic-rows").on('click', '.btn-insert', function(){    
+		  $("div.row:first").clone().appendTo("div.container").find(".btn-delete").removeClass("hide");
+	  });  
+	  
+	  $("#dynamic-rows").on('click', '.btn-delete', function(){        
+	    $(this).closest(".row").remove();
+	  });  
+	  
+	});	  
+}(jQuery));
+</script>
+<!-- delete & add row -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  <div class="container" id="dynamic-rows">
+    <div class="row">
+      <div class="col-xs-3">
+        Row1
+      </div>
+      <div class="col-xs-3">
+        Row2
+      </div>
+      <div class="col-xs-3">
+        <input type="submit" class="btn-insert btn btn-xs btn-info" value="Insert">
+        <input type="button" class="btn-delete btn-xs btn-danger btn hide" value="Delete">
+      </div>
+      </div>
+  </div>
+</body>
+</html>

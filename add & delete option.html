@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-git.js"></script>
+
+<!-- add & delete option -->
+<script>
+(function(){
+  $(document).ready(function(){
+    $("#A1").click(function(){
+      $("#select1 option:selected").each( function() {
+        $("#select2").append(
+          $("<option>").attr("value",$(this).val()).text($(this).text())); 
+        $(this).remove();
+      });
+    });
+  
+    $("#A2").click(function(){
+      $("#select2 option:selected").each( function() {
+        $("#select1").append(
+          $("<option>").attr("value",$(this).val()).text($(this).text())); 
+        $(this).remove();
+      });
+    });
+  });
+})(jQuery);
+</script>
+<!-- add & delete option -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="box">
+        <select name="" id="select1" class="form-control" multiple size=10>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-xs-1">
+      <br />
+      <br />
+      <button class="btn btn-info" id="A1">&gt;</button><br />
+      <br />
+      <button class="btn btn-info" id="A2">&lt;</button>
+    </div>
+    <div class="col-xs-4">
+      <div class="box">
+        <select name="" id="select2" class="form-control" multiple size=10>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
