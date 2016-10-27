@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My Rest Alarm</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $("div.rest").hide();
+
+    //show clock
+    var myVar = setInterval(myClock ,1000);
+    function myClock() {
+        var date = new Date();
+        document.getElementById("clock").innerHTML = date.toLocaleTimeString();
+    }
+
+    //start alarm
+    var alarm;
+    $("button.start").click(function(){
+      var alarmVal = $("input#minute").val();
+      //console.log(alarmVal*60000);
+      
+      alarm = setInterval(function(){ 
+        //alert("Hello"); 
+        var audio = "<audio autoplay><source src='"+$("input#audio").val()+"' type='audio/mpeg'></audio>";
+        $('div.alarm').append(audio);
+        $("div.rest").fadeIn();
+      }, alarmVal*60000);
+    });
+
+    //stop alarm
+    $("button.stop").click(function(){
+      console.log(1);
+      clearInterval(alarm);
+      $("div.rest").fadeOut();
+    });
+  });
+  </script>
+</head>
+
+<body>
+<div class="container">
+  <div class="row">
+    <center><p><b id="clock" style="font-size:100px;color:orange;"></b></p></center>
+  </div>
+
+  <div class="row">
+    <center><p>In our desktop job, we face lots of strech and pain. At least every 20/30 minutes, we should take a brief break. So it is a browser alarm that alarms you to take rest at your provided time interval. If you put 10 minutes alarm interval, set url for alarm ringtone and click on start button, alarm will ring continuously at every 10 minutes. If you click on stop button, the time interval alarm will stop.</p></center>
+    <form class="form-inlhorizontaline">
+      <div class="form-group">
+        <label for="sel1">Alarm interval time in minute:</label>
+        <input type="text" class="form-control" id="minute"> 
+      </div>
+      <div class="form-group">
+        <label for="sel1">Alarm audio url :</label>
+        <input type="text" class="form-control" id="audio" value="http://soundbible.com/mp3/A-Tone-His_Self-1266414414.mp3"> 
+      </div>
+    </form>  
+    <button class="btn btn-success start"> Start </button>
+    <button class="btn btn-danger stop"> Stop </button>
+  </div>
+
+  <div class="row">
+    <div class="alarm" style="display:none;"></div>
+  </div>
+  
+  <!-- if you make the class show, it won't work. Because bootstrap has own class named show. -->
+  <div class="row rest">
+    <center><p style="font-size:xx-large;color:blue;">It's time to rest</p></center>
+  </div>
+</div>
+</body>
+
+</html>
